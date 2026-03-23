@@ -1,5 +1,5 @@
 class TreeNode:
-    def __init__(self,data , designation):
+    def __init__(self, data , designation):
         self.designation = designation
         self.data = data
         self.children = []
@@ -9,12 +9,18 @@ class TreeNode:
         child.parent = self
         self.children.append(child)
 
-    def print_tree(self):
-        l = self.level() * "     "
-        print(l + self.data,"(",self.designation,")" )
+    def print_tree(self , name):
+        l = self.level() * "   "
+        s = "|__" if self.parent else ""
+        if name == "name":
+            print(l+s + self.data)
+        elif name == "designation":
+            print(l +s+ self.designation)
+        else :
+            print(l + s+self.data,"(",self.designation,")" )
         if self.children:
             for child in self.children:
-                child.print_tree()
+                child.print_tree(name)
 
     def level(self):
         level = 0
@@ -41,7 +47,9 @@ level4a = TreeNode("Dhaval" , "Cloud Manager")
 level3a.add_child(level4a)
 level4b = TreeNode("Abhijit" ,"App Manager")
 level3a.add_child(level4b)
-root.print_tree()
+root.print_tree("name")
+root.print_tree("designation")
+root.print_tree("both")
 
 
 
