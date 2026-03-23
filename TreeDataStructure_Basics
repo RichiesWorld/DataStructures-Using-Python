@@ -1,0 +1,47 @@
+class TreeNode:
+    def __init__(self , data):
+        self.data = data
+        self.children = []
+        self.parent = None
+
+    def get_level(self):
+        level = 0
+        current = self.parent
+        while current:
+            level +=1
+            current = current.parent
+        return level
+
+    def print_tree(self):
+        print((self.get_level() * "      ")+ self.data)
+        if self.children:
+            for child in self.children:
+                child.print_tree()
+
+    def add_child(self, child):
+        child.parent = self
+        self.children.append(child)
+
+
+
+root = TreeNode("Electronics")
+tv = TreeNode("Televisions")
+tv.add_child(TreeNode("Mi"))
+tv.add_child(TreeNode("Summercool"))
+tv.add_child(TreeNode("LG"))
+
+mobile = TreeNode("Mobiles")
+mobile.add_child(TreeNode("Samsung"))
+mobile.add_child(TreeNode("MI"))
+mobile.add_child(TreeNode("Apple"))
+
+refrigerators = TreeNode("Refrigerators")
+refrigerators.add_child(TreeNode("LG"))
+refrigerators.add_child(TreeNode("Godrej"))
+refrigerators.add_child(TreeNode("Kelvinators"))
+
+root.add_child(tv)
+root.add_child(mobile)
+root.add_child(refrigerators)
+
+root.print_tree()
