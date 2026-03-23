@@ -1,0 +1,50 @@
+class TreeNode:
+    def __init__(self,data , designation):
+        self.designation = designation
+        self.data = data
+        self.children = []
+        self.parent = None
+
+    def add_child(self,child):
+        child.parent = self
+        self.children.append(child)
+
+    def print_tree(self):
+        l = self.level() * "     "
+        print(l + self.data,"(",self.designation,")" )
+        if self.children:
+            for child in self.children:
+                child.print_tree()
+
+    def level(self):
+        level = 0
+        p = self.parent
+        while(p):
+            level += 1
+            p = p.parent
+        return level
+
+root = TreeNode("Nilpul","CEO")
+level2a = TreeNode("Chinmay","CTO")
+root.add_child(level2a)
+level2b = TreeNode("Gels","HR Head")
+root.add_child(level2b)
+level3a = TreeNode("Vishwa" , "Infrastructure Head")
+level2a.add_child(level3a)
+level3b = TreeNode("Aamir", "Application Head")
+level2a.add_child(level3b)
+level3c = TreeNode("Peter","Recruitment Manager")
+level2b.add_child(level3c)
+level3d = TreeNode("Waqas","Policy Manager")
+level2b.add_child(level3d)
+level4a = TreeNode("Dhaval" , "Cloud Manager")
+level3a.add_child(level4a)
+level4b = TreeNode("Abhijit" ,"App Manager")
+level3a.add_child(level4b)
+root.print_tree()
+
+
+
+
+
+
